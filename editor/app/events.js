@@ -215,7 +215,7 @@ this.app.events = this.app.events || {};
     return false;
   }
   /* ========================================================================= */
-
+  
   /* MENU SELECTION ========================================================== */
   app.events.onButtonSelectAll = function(event) {
     app.editor.selectAll(); return false;
@@ -227,5 +227,29 @@ this.app.events = this.app.events || {};
     app.editor.invertSelection(); return false;
   }
   /* ========================================================================= */
-
+  
+  /* MENU RUN ========================================================== */
+  app.events.onButtonExecuteTree = function(event) {
+    
+    app.helpers.updateBlock();    
+    var json = app.editor.exportToJSON();
+    
+    var ros = new ROSLIB.Ros({
+      url : 'ws://localhost:9090'
+    });
+    
+    var json_pub = new ROSLIB.Topic({
+      ros : ros,
+      name : 'behavior_tree_json',
+      messageType : 'std_msgs/String'
+    });
+    
+    var msg = new ROSLIB.Message({data: json});
+    json_pub.publish(msg);
+  }
+  /* ========================================================================= */
+  
+  
+  
+  
 })();
