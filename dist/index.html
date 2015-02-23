@@ -52,11 +52,11 @@
         name : 'behavior_tree_json',
         messageType : 'std_msgs/String'
       });
-      
-      json_listener.subscribe(function(message) {
-        console.log('Received message on ' + json_listener.name + ': ' + message.data);
-        app.editor.importFromJSON(message.data);
-      })
+
+//       json_listener.subscribe(function(message) {
+//         console.log('Received message on ' + json_listener.name + ': ' + message.data);
+//         app.editor.importFromJSON(message.data);
+//       })
       
       var cur_listener = new ROSLIB.Topic({
         ros : ros,
