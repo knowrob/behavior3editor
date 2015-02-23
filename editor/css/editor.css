@@ -373,11 +373,11 @@ html, body {
 }
 .reveal-modal {
     padding: 10px;
-    background-color: #343434;
+    background-color: #E7E7E7;
 }
 .reveal-modal h2 {
     font-size: 120%;
-    color: #FFF;
+    color: #333;
     text-align: center;
 
 }
@@ -385,7 +385,7 @@ html, body {
     top: 2px;
 }
 .reveal-modal .content, .reveal-modal .operations {
-    background-color: #484848;
+    background-color: #D7D7D7;
     border: 1px solid #181818;
     padding: 15px;
 }
@@ -400,7 +400,7 @@ html, body {
     margin-right: 0px;
 }
 .reveal-modal .content {
-    color: #efefef;
+    color: #555;
 }
 .reveal-modal .content label {
     color: inherit;
