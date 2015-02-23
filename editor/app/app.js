@@ -79,7 +79,7 @@ this.app.dom = this.app.dom || {};
 
     app.settings = new b3editor.SettingsManager();
     app.settings.load(b3editor.OPTIONS);
-    app.settings.load(b3editor.THEME_DARK);
+    app.settings.load(b3editor.THEME_LIGHT);
     app.settings.load(b3editor.SHORTCUTS);
 
     app.game = new b3editor.Game();
