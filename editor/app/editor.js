@@ -252,6 +252,7 @@ this.b3editor = this.b3editor || {};
       }
       spec.parameters  = block.parameters;
       spec.properties  = block.properties;
+      spec.mappings  = block.mappings;
 
       var children = block.getOutNodeIdsByOrder();
       if (block.category == 'composite') {
