@@ -12,7 +12,7 @@ this.app.events = this.app.events || {};
     }
 
     app.helpers.updateProperties(block);
-  }
+  };
   app.events.onBlockDeselect = function(event) {
     var block = null;
     if (app.editor.selectedBlocks.length == 2) {
@@ -22,7 +22,7 @@ this.app.events = this.app.events || {};
     }
 
     app.helpers.updateProperties(block);
-  }
+  };
   /* ========================================================================= */
 
   /* NODES =================================================================== */
@@ -41,7 +41,7 @@ this.app.events = this.app.events || {};
     canvas.addClass('grabbing');
 
     return canvas;
-  }
+  };
   app.events.onNodeDrop = function(event, ui) {
     var name = $(ui.draggable).attr('data-name');
     var node = app.editor.nodes[name];
@@ -50,7 +50,7 @@ this.app.events = this.app.events || {};
     app.editor.snap(block);
     app.editor.deselectAll();
     app.editor.select(block);
-  }
+  };
   app.events.onOpenEditNodeModal = function(event) {
     var link = $(event.target).parent();
     var nodeName = link.attr('data-name');
@@ -60,7 +60,7 @@ this.app.events = this.app.events || {};
     $('#name', app.dom.editNodeTable).val(node.prototype.name);
     $('#title', app.dom.editNodeTable).val(node.prototype.title);
     // $('#category', app.editNodeTable).val(node.prototype.category);
-  }
+  };
   app.events.onNodeEditSave = function() {
     app.helpers.updateBlock();
     app.editor.deselectAll();
@@ -95,7 +95,7 @@ this.app.events = this.app.events || {};
     app.editor.nodes[newName] = node;
 
     app.helpers.updateNodes();
-  }
+  };
   app.events.onNodeEditRemove = function() {
     app.helpers.updateBlock();
     app.editor.deselectAll();
@@ -113,7 +113,7 @@ this.app.events = this.app.events || {};
     delete app.editor.nodes[oldName];
 
     app.helpers.updateNodes();
-  }
+  };
   /* ========================================================================= */
 
   /* PROPERTIES ============================================================== */
@@ -123,21 +123,21 @@ this.app.events = this.app.events || {};
     } else {
       app.helpers.addEditableRow(table);
     }
-  }
+  };
   app.events.onRemEditableRow = function(event) {
     var id = $(event.target).attr('data-id');
     app.helpers.remEditableRow($(this).parent());
-  }
+  };
   app.events.onPropertyChange = function(obj) {
     app.helpers.updateBlock();
-  }
+  };
   app.events.onAddDynamicRow = function(table) {
     app.helpers.addDynamicRow(table);
-  }
+  };
   app.events.onRemDynamicRow = function(event) {
     var id = $(event.target).attr('data-id');
     app.helpers.remDynamicRow($(this).parent());
-  }
+  };
   /* ========================================================================= */
 
   /* MENU FILE =============================================================== */
@@ -145,7 +145,7 @@ this.app.events = this.app.events || {};
     app.editor.reset();
     app.editor.center();
     return false;
-  }
+  };
   app.events.onButtonImportTree = function(event) {
     var json = app.dom.importEntry.val();
 
@@ -159,7 +159,7 @@ this.app.events = this.app.events || {};
       app.editor.center();
     }
     return false;
-  }
+  };
   app.events.onButtonExportTree = function(event) {
     app.helpers.updateBlock();
     
@@ -167,65 +167,65 @@ this.app.events = this.app.events || {};
     var json = app.editor.exportToJSON();
     app.dom.exportEntry.val(json);
     return false;
-  }
+  };
   /* ========================================================================= */
 
   /* MENU EDIT =============================================================== */
   app.events.onButtonCopy = function(event) {
     app.editor.copy();
     return false;
-  }
+  };
   app.events.onButtonCut = function(event) {
     app.editor.cut();
     return false;
-  }
+  };
   app.events.onButtonPaste = function(event) {
     app.editor.paste();
     return false;
-  }
+  };
   app.events.onButtonRemove = function(event) {
     app.editor.remove();
     return false;
-  }
+  };
   app.events.onButtonRemoveConnections = function(event) {
     app.editor.removeConnections();
     return false;
-  }
+  };
   app.events.onButtonRemoveInConnections = function(event) {
     app.editor.removeInConnections();
     return false;
-  }
+  };
   app.events.onButtonRemoveOutConnections = function(event) {
     app.editor.removeOutConnections();
     return false;
-  }
+  };
   /* ========================================================================= */
 
   /* MENU VIEW =============================================================== */
   app.events.onButtonAutoOrganize = function(event) {
     app.editor.organize();
     return false;
-  }
+  };
   app.events.onButtonZoomIn = function(event) {
     app.editor.zoomIn();
     return false;
-  }
+  };
   app.events.onButtonZoomOut = function(event) {
     app.editor.zoomOut();
     return false;
-  }
+  };
   /* ========================================================================= */
   
   /* MENU SELECTION ========================================================== */
   app.events.onButtonSelectAll = function(event) {
     app.editor.selectAll(); return false;
-  }
+  };
   app.events.onButtonDeselectAll = function(event) {
     app.editor.deselectAll(); return false;
-  }
+  };
   app.events.onButtonInvertSelection = function(event) {
     app.editor.invertSelection(); return false;
-  }
+  };
   /* ========================================================================= */
   
   /* MENU RUN ========================================================== */
@@ -246,10 +246,7 @@ this.app.events = this.app.events || {};
     
     var msg = new ROSLIB.Message({data: json});
     json_pub.publish(msg);
-  }
+  };
   /* ========================================================================= */
-  
-  
-  
-  
+
 })();

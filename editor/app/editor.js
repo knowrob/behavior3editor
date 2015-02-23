@@ -161,6 +161,7 @@ this.b3editor = this.b3editor || {};
       block.title = spec.title;
       block.description = spec.description;
       block.properties = $.extend({}, spec.parameters, spec.properties);
+      block.mappings = spec.mappings || {};
       block.redraw();
 
       if (block.id === data.root) {

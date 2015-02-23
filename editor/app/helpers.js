@@ -8,7 +8,7 @@ this.app.helpers = this.app.helpers || {};
   var _createHeader = function(category) {
     var header = $('<li class="header"><a href="#">'+category+'</a></li>');
     return header;
-  }
+  };
   var _createItem = function(title, name) {
     var item = $('<li class="item"></li>');
     var link = $('<a href="#">'+title+'</a>');
@@ -16,7 +16,7 @@ this.app.helpers = this.app.helpers || {};
     link.attr('id', 'node-'+name);
     item.append(link);
     return item;
-  }
+  };
   var _createCategory = function(category) {
     // this.addHeaderToList(category);
     var header = _createHeader(category);
@@ -27,7 +27,7 @@ this.app.helpers = this.app.helpers || {};
 
       if (node.prototype.category == category) {
         var title = node.prototype.title || node.prototype.name,
-        title = title.replace(/(<\w+>)/g, function(match, key) { return '@'; })
+        title = title.replace(/(<\w+>)/g, function(match, key) { return '@'; });
 
         var item = _createItem(title, node.prototype.name );
         items.append(item);
@@ -35,7 +35,7 @@ this.app.helpers = this.app.helpers || {};
     }
     header.append(items);
     return header;
-  }
+  };
   var createList = function() {
     var list = $('<ul id="node-list"><ul>')
     list.append(_createCategory('composite'));
@@ -44,7 +44,7 @@ this.app.helpers = this.app.helpers || {};
     list.append(_createCategory('action'));
 
     return list;
-  }
+  };
 
   app.helpers.updateNodes = function() {
     var list = createList();
@@ -75,7 +75,7 @@ this.app.helpers = this.app.helpers || {};
         edit.toggle();
       });
     })
-  }
+  };
   app.helpers.updateProperties = function(block) {
     if (app.block) {
       app.helpers.updateBlock();
@@ -105,10 +105,10 @@ this.app.helpers = this.app.helpers || {};
         app.helpers.addEditableRow(maps, k, block.mappings[k]);
       }
     }
-  }
+  };
   app.helpers.updateHelp = function() {
 
-  }
+  };
   /* ========================================================================= */
 
   /* ========================================================================= */
@@ -155,13 +155,13 @@ this.app.helpers = this.app.helpers || {};
     app.block.properties = props;
     app.block.mappings = mappings;
     app.block.redraw();
-  }
+  };
   /* ========================================================================= */
 
   /* EDITABLE TABLES ========================================================= */
   app.helpers.addEditableRow = function(table, key, value, keyPlaceholder, valuePlaceholder) {
     key = key || '';
-    if (value == null) {
+    if (value === null) {
       value = value || '';
     }
     keyPlaceholder=keyPlaceholder||'Key';
@@ -183,14 +183,14 @@ this.app.helpers = this.app.helpers || {};
     $('input', row).change(app.events.onPropertyChange);
 
     table.append(row);
-  }
+  };
   app.helpers.remEditableRow = function(row) {
     row.remove();
     app.helpers.updateBlock();
-  }
+  };
   app.helpers.remAllEditableRows = function(table) {
     table.html('');
-  }
+  };
 
   app.helpers.addDynamicRow = function(table) {
       var row = $('<tr></tr>');
@@ -212,19 +212,19 @@ this.app.helpers = this.app.helpers || {};
   }
   app.helpers.remDynamicRow = function(row) {
     row.remove();
-  }
+  };
   app.helpers.resetDynamicTable = function(table) {
     table.html('');
     app.helpers.addDynamicRow(table);
     app.helpers.addDynamicRow(table);
     app.helpers.addDynamicRow(table);
-  }
+  };
   app.helpers.addCustomNodes = function(table) {
     var classes = {
       'composite' : b3.Composite,
       'decorator' : b3.Decorator,
       'condition' : b3.Condition,
-      'action' : b3.Action,
+      'action' : b3.Action
     }
 
     $('tr', table).each(function() {
@@ -247,14 +247,14 @@ this.app.helpers = this.app.helpers || {};
     });
 
     app.helpers.updateNodes();
-  }
+  };
 
   app.helpers.addCustomNode = function(option) {
     var classes = {
       'composite' : b3.Composite,
       'decorator' : b3.Decorator,
       'condition' : b3.Condition,
-      'action' : b3.Action,
+      'action' : b3.Action
     };
     var category = option.category;
     var cls = classes[category];
@@ -271,13 +271,13 @@ this.app.helpers = this.app.helpers || {};
   /* ========================================================================= */
   app.helpers.alert = function(type, message) {
     $.notify(message, type);
-  }
+  };
   /* ========================================================================= */
 
   /* MENU ==================================================================== */
   app.helpers.updateShortcuts = function() {
     for (var k in app.settings._dict) {
-      if (k.indexOf('key_') == 0) {
+      if (k.indexOf('key_') === 0) {
         var value = app.settings.get(k);
         $('#'+k).html(value);
 
@@ -287,13 +287,13 @@ this.app.helpers = this.app.helpers || {};
         }
       }
     }
-  }
+  };
   /* ========================================================================= */
 
   /* JS PLUGINS ============================================================== */
   app.helpers._updateCollapsable = function() {
     app.dom.nodesComp.collapsable();
-  }
+  };
 
   app.helpers._updateDraggable = function() {
     $('li.item > a', app.dom.nodesComp).draggable({
@@ -301,13 +301,13 @@ this.app.helpers = this.app.helpers || {};
       appendTo : "body",
       helper   : app.events.onNodeDrag
     });
-  }
+  };
   app.helpers._updateDroppable = function() {
     app.dom.gameCanvas.droppable({
       greedy : true,
       drop   : app.events.onNodeDrop
     });
-  }
+  };
   /* ========================================================================= */
 
 })();
