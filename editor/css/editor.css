@@ -180,9 +180,9 @@ html, body {
     width: 100%;
     padding: 0px 10px;
     outline: 0px;
-    background-color: #368A55;
+    background-color: #E7E7E7;
     border: 0px;
-    color: #FFF;
+    color: #333;
     transition: background-color 300ms ease-out 0s;
     transition-property: background-color;
     transition-duration: 300ms;
@@ -190,7 +190,7 @@ html, body {
     transition-delay: 0s;
 }
 .nodes-operators input.operator:hover {
-    background-color: #2F774A;
+  background-color: #D7D7D7;
 }
 .dynamic-table {
     border: 0px;
@@ -198,7 +198,7 @@ html, body {
     background-color: #484848 !important;
 }
 .dynamic-table.operators input {
-    color: #FFF;
+    color: #333;
     border: 0px;
     margin: 0px;
     padding: 0px;
@@ -209,7 +209,7 @@ html, body {
     background-color: #fff!important;
 }
 .dynamic-table tr {
-    background-color: #484848 !important;
+    background-color: #E7E7E7 !important;
 }
 .dynamic-table td {
     height: 40px;
@@ -234,15 +234,15 @@ html, body {
     transition-delay: 0s;
 }
 .dynamic-table .operator input {
-    color: #FFF;
+    color: #333;
     border: 0px;
     margin: 0px;
     padding: 0px;
     outline: 0px;
-    background-color: #EC3E21;
+    background-color: #E7E7E7;
 }
 .dynamic-table .operator input:hover {
-    background-color: #CF2A0E;
+    background-color: #D7D7D7;
 }
 #preview-canvas {
     position: absolute;
@@ -271,8 +271,7 @@ html, body {
     /*color: #;*/
 }
 .editable-table {
-    margin-bottom: 16px;
-    background-color: #222;
+  background-color: #E7E7E7;
 }
 .editable-table input {
     margin: 0px;
@@ -283,9 +282,9 @@ html, body {
 .editable-table input.operator {
     padding: 0px;
     outline: 0px;
-    background-color: #EC3E21;
+    background-color: #E7E7E7;
     border: 0px;
-    color: #FFF;
+    color: #333;
     transition: background-color 300ms ease-out 0s;
     transition-property: background-color;
     transition-duration: 300ms;
@@ -293,7 +292,7 @@ html, body {
     transition-delay: 0s;
 }
 .editable-table input.operator:hover {
-    background-color: #CF2A0E;
+    background-color: #D7D7D7;
 }
 .editable-table div.editable-row {
     width: 100%;
@@ -319,7 +318,8 @@ html, body {
 }
 .editable-operators {
     height: 30px;
-    background-color: #E7E7E7;
+/*     background-color: #E7E7E7; */
+    margin-bottom: 16px;
 }
 .editable-operators div.operator {
     display: inline-block;
@@ -333,9 +333,9 @@ html, body {
     width: 100%;
     padding: 0px;
     outline: 0px;
-    background-color: #368A55;
+    background-color: #E7E7E7;
     border: 0px;
-    color: #FFF;
+    color: #333;
     transition: background-color 300ms ease-out 0s;
     transition-property: background-color;
     transition-duration: 300ms;
@@ -343,7 +343,7 @@ html, body {
     transition-delay: 0s;
 }
 .editable-operators input.operator:hover {
-    background-color: #2F774A;
+    background-color: #E7E7E7;
 }
 /*#properties-panel .operators {
     float: right;
