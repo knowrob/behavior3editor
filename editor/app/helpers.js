@@ -96,13 +96,13 @@ this.app.helpers = this.app.helpers || {};
       var propers = $('#properties-table', app.dom.propertiesPanel);
       app.helpers.remAllEditableRows(propers);
       for (var k in block.properties) {
-        app.helpers.addEditableRow(propers, k, block.properties[k], 'Key', 'Value');
+        app.helpers.addEditableRow(propers, k, block.properties[k]);
       }
       
-      var propers = $('#mappings-table', app.dom.propertiesPanel);
-      app.helpers.remAllEditableRows(propers);
-      for (var k in block.properties) {
-        app.helpers.addEditableRow(propers, k, block.properties[k], 'In', 'Out');
+      var maps = $('#mappings-table', app.dom.propertiesPanel);
+      app.helpers.remAllEditableRows(maps);
+      for (var k in block.mappings) {
+        app.helpers.addEditableRow(maps, k, block.mappings[k]);
       }
     }
   }
@@ -118,6 +118,7 @@ this.app.helpers = this.app.helpers || {};
     var title = $('#title', app.dom.propertiesPanel).val();
     var description = $('#description', app.dom.propertiesPanel).val();
 
+    // Update properties
     var props = {}
     $('#properties-table > .editable-row', app.dom.propertiesPanel).each(function() {
       var row = $(this);
@@ -132,10 +133,27 @@ this.app.helpers = this.app.helpers || {};
         props[key] = value;
       }
     });
+    
+    // Update remappings
+    var mappings = {}
+    $('#mappings-table > .editable-row', app.dom.propertiesPanel).each(function() {
+      var row = $(this);
+      var key = $('.key > input', row).val();
+      var value = $('.value > input', row).val();
+      
+      if ($.isNumeric(value)) {
+        value = parseFloat(value);
+      }
+      
+      if (key) {
+        mappings[key] = value;
+      }
+    });
 
     app.block.title = title;
     app.block.description = description;
     app.block.properties = props;
+    app.block.mappings = mappings;
     app.block.redraw();
   }
   /* ========================================================================= */

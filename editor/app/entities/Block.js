@@ -20,6 +20,7 @@ this.b3editor = this.b3editor || {};
     this.title          = dict.title || this.name;
     this.description    = dict.description || '';
     this.properties     = $.extend({}, dict.parameters, dict.properties);
+    this.mappings       = {};
 
     this.displayObject  = new createjs.Container();
     this.inConnection   = null;
