@@ -118,7 +118,11 @@ this.app.events = this.app.events || {};
 
   /* PROPERTIES ============================================================== */
   app.events.onAddEditableRow = function(table) {
-    app.helpers.addEditableRow(table);
+    if( $(table).attr('id') == "mappings-table") {
+      app.helpers.addEditableRow(table, '', '', 'Local', 'Parent');
+    } else {
+      app.helpers.addEditableRow(table);
+    }
   }
   app.events.onRemEditableRow = function(event) {
     var id = $(event.target).attr('data-id');

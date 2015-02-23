@@ -92,11 +92,17 @@ this.app.helpers = this.app.helpers || {};
 
       $('#title', app.dom.propertiesPanel).val(block.title);
       $('#description', app.dom.propertiesPanel).val(block.description);
-
+      
       var propers = $('#properties-table', app.dom.propertiesPanel);
       app.helpers.remAllEditableRows(propers);
       for (var k in block.properties) {
-        app.helpers.addEditableRow(propers, k, block.properties[k]);
+        app.helpers.addEditableRow(propers, k, block.properties[k], 'Key', 'Value');
+      }
+      
+      var propers = $('#mappings-table', app.dom.propertiesPanel);
+      app.helpers.remAllEditableRows(propers);
+      for (var k in block.properties) {
+        app.helpers.addEditableRow(propers, k, block.properties[k], 'In', 'Out');
       }
     }
   }
@@ -135,15 +141,17 @@ this.app.helpers = this.app.helpers || {};
   /* ========================================================================= */
 
   /* EDITABLE TABLES ========================================================= */
-  app.helpers.addEditableRow = function(table, key, value) {
+  app.helpers.addEditableRow = function(table, key, value, keyPlaceholder, valuePlaceholder) {
     key = key || '';
     if (value == null) {
       value = value || '';
     }
+    keyPlaceholder=keyPlaceholder||'Key';
+    valuePlaceholder=valuePlaceholder||'Value';
 
     var row = $('<div class="editable-row"></div>');
-    var colKey = $('<div class="editable-col key"><input type="text" placeholder="Key" value="'+key+'"></div>');
-    var colVal = $('<div class="editable-col value"><input type="text" placeholder="Value" value="'+value+'"></div>');
+    var colKey = $('<div class="editable-col key"><input type="text" placeholder="'+keyPlaceholder+'" value="'+key+'"></div>');
+    var colVal = $('<div class="editable-col value"><input type="text" placeholder="'+valuePlaceholder+'" value="'+value+'"></div>');
     var colOp = $('<div class="editable-col operator"><input type="button" class="operator" value="-"></div>');
 
     colOp.click(app.events.onRemEditableRow);
