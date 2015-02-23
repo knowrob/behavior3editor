@@ -8,7 +8,7 @@ var THEME_LIGHT = {
     background_color        : '#ffffff',
     
     // SELECTION
-    selection_color         : '#4bb2fd',
+    selection_color         : '#2e71a0',
     
     // BLOCK
     block_background_color  : '#EFEFEF',
