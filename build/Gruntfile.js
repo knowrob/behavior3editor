@@ -21,15 +21,36 @@ module.exports = function(grunt) {
         options: {removeComments: true, collapseWhitespace: true},
         src: [], dest: '',
       }
+    },
+    jshint: {
+      options: {
+        globals: {}
+      },
+      all: ['Gruntfile.js', '../editor/**/*.js']
+    },
+    jsvalidate: {
+      options:{
+        globals: {},
+        esprimaOptions: {},
+        verbose: false
+      },
+      targetName:{
+        files:{
+          src:['<%=jshint.all%>']
+        }
+      }
     }
   });
 
   // Load the plugin that provides the "uglify" task.
+  grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-contrib-htmlmin');
-
+  grunt.loadNpmTasks('grunt-jsvalidate');
+  
+  
   // APP
   grunt.registerTask('_app', function() {
     grunt.config.set('concat.dist.src', files['app']);
@@ -37,7 +58,7 @@ module.exports = function(grunt) {
     grunt.config.set('uglify.dist.src', '../dist/build.js');
     grunt.config.set('uglify.dist.dest', '../dist/build.js');
   });
-  grunt.registerTask('app', ['_app', 'concat', 'uglify']);
+  grunt.registerTask('app', ['_app', 'concat']);
 
   // LIBS
   grunt.registerTask('_libs', function() {
@@ -46,7 +67,7 @@ module.exports = function(grunt) {
     grunt.config.set('uglify.dist.src', '../dist/libs.js');
     grunt.config.set('uglify.dist.dest', '../dist/libs.js');
   });
-  grunt.registerTask('libs', ['_libs', 'concat', 'uglify']);
+  grunt.registerTask('libs', ['_libs', 'concat']);
 
   // HTML
   grunt.registerTask('_html', function() {

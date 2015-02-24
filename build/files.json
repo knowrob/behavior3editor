@@ -3,6 +3,7 @@
     "../editor/data/options.js",
     "../editor/data/shortcuts.js",
     "../editor/data/theme_dark.js",
+    "../editor/data/theme_light.js",
     "../editor/app/utils/SettingsManager.js",
     "../editor/app/utils/Root.js",
     "../editor/app/utils/Organizer.js",
