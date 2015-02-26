@@ -45,31 +45,35 @@
       var ros = new ROSLIB.Ros({
         url : 'ws://localhost:9090'
       });
-
-        
-      var json_listener = new ROSLIB.Topic({
+      
+      // ROS Topics
+      var behavior_tree_step = new ROSLIB.Topic({
         ros : ros,
-        name : 'behavior_tree_json',
+        name : 'behavior_tree_step',
         messageType : 'std_msgs/String'
       });
-
-//       json_listener.subscribe(function(message) {
-//         console.log('Received message on ' + json_listener.name + ': ' + message.data);
-//         app.editor.importFromJSON(message.data);
-//       })
       
-      var cur_listener = new ROSLIB.Topic({
+      
+      var behavior_tree_current = new ROSLIB.Topic({
         ros : ros,
         name : 'behavior_tree_current',
         messageType : 'std_msgs/String'
       });
       
-      cur_listener.subscribe(function(message) {
-        console.log('Received message on ' + cur_listener.name + ': ' + message.data);
+      behavior_tree_current.subscribe(function(message) {
         var block = app.editor.getBlockById(message.data);
         app.editor.deselectAll();
         app.editor.select(block);
-      })
+      });
+      
+      
+      // ROS actionlib client
+      var behavior_tree_action = new ROSLIB.ActionClient({
+        ros : ros,
+        serverName : '/bt_executive',
+        actionName : 'behavior_trees_msgs/ExecuteTreeAction'
+      });
+
       
   </script>
   <script src="main.js" type="text/javascript"></script>
