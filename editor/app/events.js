@@ -231,22 +231,73 @@ this.app.events = this.app.events || {};
   /* MENU RUN ========================================================== */
   app.events.onButtonExecuteTree = function(event) {
     
-    app.helpers.updateBlock();    
+    app.helpers.updateBlock();
     var json = app.editor.exportToJSON();
     
-    var ros = new ROSLIB.Ros({
-      url : 'ws://localhost:9090'
+    var goal = new ROSLIB.Goal({
+      actionClient : behavior_tree_action,
+      goalMessage : {
+        tree: {
+          id: 'some-id',
+          label: 'some-label',
+          json: json
+        },
+        vis: true,
+        debug: false
+      }
     });
     
-    var json_pub = new ROSLIB.Topic({
-      ros : ros,
-      name : 'behavior_tree_json',
-      messageType : 'std_msgs/String'
+    goal.on('feedback', function(feedback) {
+      console.log('Feedback: ' + feedback.sequence);
     });
     
-    var msg = new ROSLIB.Message({data: json});
-    json_pub.publish(msg);
+    goal.on('result', function(result) {
+      console.log('Final Result: ' + result.sequence);
+    });
+    
+    goal.send();
   };
+  
+  
+  app.events.onButtonDebugTree = function(event) {
+    
+    app.helpers.updateBlock();
+    var json = app.editor.exportToJSON();
+    
+    var goal = new ROSLIB.Goal({
+      actionClient : behavior_tree_action,
+      goalMessage : {
+        tree: {
+          id: 'some-id',
+          label: 'some-label',
+          json: json
+        },
+        vis: true,
+        debug: true
+      }
+    });
+    
+    goal.on('feedback', function(feedback) {
+      console.log('Feedback: ' + feedback.sequence);
+    });
+    
+    goal.on('result', function(result) {
+      console.log('Final Result: ' + result.sequence);
+    });
+    
+    goal.send();
+  };
+  
+  app.events.onButtonDebugStep = function(event) {
+    
+    var msg = new ROSLIB.Message({data: 'step'});
+    behavior_tree_step.publish(msg);
+  };
+  
+  app.events.onButtonStopTree = function(event) {
+    behavior_tree_action.cancel();
+  };
+  
   /* ========================================================================= */
 
 })();
