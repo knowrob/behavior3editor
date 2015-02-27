@@ -96,9 +96,11 @@ this.app.helpers = this.app.helpers || {};
       if(block.breakpoint == true) {
         $('#breakpoint', app.dom.propertiesPanel).html('remove breakpoint <i class="fa fa-minus-square">');
         $('#breakpoint', app.dom.propertiesPanel).css('color', '#DD0000');
+        $('#breakpoint', app.dom.propertiesPanel).data('task-id', block.id);
       } else {
         $('#breakpoint', app.dom.propertiesPanel).html('add breakpoint <i class="fa fa-plus-square"></i>');
         $('#breakpoint', app.dom.propertiesPanel).css('color', '#008CBA');
+        $('#breakpoint', app.dom.propertiesPanel).data('task-id', block.id);
       }
       
       var propers = $('#properties-table', app.dom.propertiesPanel);

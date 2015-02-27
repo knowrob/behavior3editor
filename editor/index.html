@@ -47,10 +47,10 @@
       });
       
       // ROS Topics
-      var behavior_tree_step = new ROSLIB.Topic({
+      var behavior_tree_dbg = new ROSLIB.Topic({
         ros : ros,
-        name : 'behavior_tree_step',
-        messageType : 'std_msgs/String'
+        name : 'behavior_tree_dbg',
+        messageType : 'behavior_trees_msgs/BehaviorTreeDebug'
       });
       
       

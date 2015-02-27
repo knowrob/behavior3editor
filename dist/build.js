@@ -1335,9 +1335,11 @@ this.app.helpers = this.app.helpers || {};
       if(block.breakpoint == true) {
         $('#breakpoint', app.dom.propertiesPanel).html('remove breakpoint <i class="fa fa-minus-square">');
         $('#breakpoint', app.dom.propertiesPanel).css('color', '#DD0000');
+        $('#breakpoint', app.dom.propertiesPanel).data('task-id', block.id);
       } else {
         $('#breakpoint', app.dom.propertiesPanel).html('add breakpoint <i class="fa fa-plus-square"></i>');
         $('#breakpoint', app.dom.propertiesPanel).css('color', '#008CBA');
+        $('#breakpoint', app.dom.propertiesPanel).data('task-id', block.id);
       }
       
       var propers = $('#properties-table', app.dom.propertiesPanel);
@@ -1855,8 +1857,20 @@ this.app.events = this.app.events || {};
   
   app.events.onButtonDebugStep = function(event) {
     
-    var msg = new ROSLIB.Message({data: 'step'});
-    behavior_tree_step.publish(msg);
+    var msg = new ROSLIB.Message({cmd: 0, arg: ''});
+    behavior_tree_dbg.publish(msg);
+  };
+  
+  app.events.onButtonDebugLeap = function(event) {
+    
+    var msg = new ROSLIB.Message({cmd: 1, arg: ''});
+    behavior_tree_dbg.publish(msg);
+  };
+  
+  app.events.onButtonDebugPause = function(event) {
+    
+    var msg = new ROSLIB.Message({cmd: 2, arg: ''});
+    behavior_tree_dbg.publish(msg);
   };
   
   app.events.onButtonStopTree = function(event) {
@@ -1865,12 +1879,25 @@ this.app.events = this.app.events || {};
   
   app.events.onToggleBreakpoint = function(event) {
     
+    var task_id = $('#breakpoint', app.dom.propertiesPanel).data('task-id');
+    
     if($('#breakpoint').text().indexOf("add") != -1) {
+      
+      // adding breakpoint
       $('#breakpoint').html('remove breakpoint <i class="fa fa-minus-square">');
       $('#breakpoint').css('color', '#DD0000');
+      
+      var msg = new ROSLIB.Message({cmd: 3, arg: task_id});
+      behavior_tree_dbg.publish(msg);
+      
     } else {
+      
+      // removing breakpoint
       $('#breakpoint').html('add breakpoint <i class="fa fa-plus-square"></i>');
       $('#breakpoint').css('color', '#008CBA');
+      
+      var msg = new ROSLIB.Message({cmd: 4, arg: task_id});
+      behavior_tree_dbg.publish(msg);
     }
   };
   
@@ -2093,6 +2120,7 @@ this.b3editor = this.b3editor || {};
       block.id = spec.id;
       block.title = spec.title;
       block.description = spec.description;
+      block.breakpoint = spec.breakpoint;
       block.properties = $.extend({}, spec.parameters, spec.properties);
       block.mappings = spec.mappings || {};
       block.redraw();
@@ -2180,6 +2208,7 @@ this.b3editor = this.b3editor || {};
       spec.name        = block.name,
       spec.title       = block.title,
       spec.description = block.description;
+      spec.breakpoint = block.breakpoint;
       spec.display     = {
         'x' : block.displayObject.x,
         'y' : block.displayObject.y

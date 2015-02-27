@@ -290,8 +290,20 @@ this.app.events = this.app.events || {};
   
   app.events.onButtonDebugStep = function(event) {
     
-    var msg = new ROSLIB.Message({data: 'step'});
-    behavior_tree_step.publish(msg);
+    var msg = new ROSLIB.Message({cmd: 0, arg: ''});
+    behavior_tree_dbg.publish(msg);
+  };
+  
+  app.events.onButtonDebugLeap = function(event) {
+    
+    var msg = new ROSLIB.Message({cmd: 1, arg: ''});
+    behavior_tree_dbg.publish(msg);
+  };
+  
+  app.events.onButtonDebugPause = function(event) {
+    
+    var msg = new ROSLIB.Message({cmd: 2, arg: ''});
+    behavior_tree_dbg.publish(msg);
   };
   
   app.events.onButtonStopTree = function(event) {
@@ -300,12 +312,25 @@ this.app.events = this.app.events || {};
   
   app.events.onToggleBreakpoint = function(event) {
     
+    var task_id = $('#breakpoint', app.dom.propertiesPanel).data('task-id');
+    
     if($('#breakpoint').text().indexOf("add") != -1) {
+      
+      // adding breakpoint
       $('#breakpoint').html('remove breakpoint <i class="fa fa-minus-square">');
       $('#breakpoint').css('color', '#DD0000');
+      
+      var msg = new ROSLIB.Message({cmd: 3, arg: task_id});
+      behavior_tree_dbg.publish(msg);
+      
     } else {
+      
+      // removing breakpoint
       $('#breakpoint').html('add breakpoint <i class="fa fa-plus-square"></i>');
       $('#breakpoint').css('color', '#008CBA');
+      
+      var msg = new ROSLIB.Message({cmd: 4, arg: task_id});
+      behavior_tree_dbg.publish(msg);
     }
   };
   
