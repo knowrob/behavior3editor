@@ -278,11 +278,11 @@ this.app.events = this.app.events || {};
     });
     
     goal.on('feedback', function(feedback) {
-      console.log('Feedback: ' + feedback.sequence);
+      console.log('Current node: ' + feedback.running_node);
     });
     
     goal.on('result', function(result) {
-      console.log('Final Result: ' + result.sequence);
+      console.log('Execution result: ' + result.result.status);
     });
     
     goal.send();
@@ -296,6 +296,17 @@ this.app.events = this.app.events || {};
   
   app.events.onButtonStopTree = function(event) {
     behavior_tree_action.cancel();
+  };
+  
+  app.events.onToggleBreakpoint = function(event) {
+    
+    if($('#breakpoint').text().indexOf("add") != -1) {
+      $('#breakpoint').html('remove breakpoint <i class="fa fa-minus-square">');
+      $('#breakpoint').css('color', '#DD0000');
+    } else {
+      $('#breakpoint').html('add breakpoint <i class="fa fa-plus-square"></i>');
+      $('#breakpoint').css('color', '#008CBA');
+    }
   };
   
   /* ========================================================================= */

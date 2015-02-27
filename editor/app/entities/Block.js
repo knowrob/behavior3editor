@@ -21,6 +21,7 @@ this.b3editor = this.b3editor || {};
     this.description    = dict.description || '';
     this.properties     = $.extend({}, dict.parameters, dict.properties);
     this.mappings       = {};
+    this.breakpoint     = false;
 
     this.displayObject  = new createjs.Container();
     this.inConnection   = null;

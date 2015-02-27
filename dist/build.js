@@ -599,6 +599,7 @@ this.b3editor = this.b3editor || {};
     this.description    = dict.description || '';
     this.properties     = $.extend({}, dict.parameters, dict.properties);
     this.mappings       = {};
+    this.breakpoint     = false;
 
     this.displayObject  = new createjs.Container();
     this.inConnection   = null;
@@ -1331,6 +1332,14 @@ this.app.helpers = this.app.helpers || {};
       $('#title', app.dom.propertiesPanel).val(block.title);
       $('#description', app.dom.propertiesPanel).val(block.description);
       
+      if(block.breakpoint == true) {
+        $('#breakpoint', app.dom.propertiesPanel).html('remove breakpoint <i class="fa fa-minus-square">');
+        $('#breakpoint', app.dom.propertiesPanel).css('color', '#DD0000');
+      } else {
+        $('#breakpoint', app.dom.propertiesPanel).html('add breakpoint <i class="fa fa-plus-square"></i>');
+        $('#breakpoint', app.dom.propertiesPanel).css('color', '#008CBA');
+      }
+      
       var propers = $('#properties-table', app.dom.propertiesPanel);
       app.helpers.remAllEditableRows(propers);
       for (var k in block.properties) {
@@ -1356,6 +1365,11 @@ this.app.helpers = this.app.helpers || {};
     var title = $('#title', app.dom.propertiesPanel).val();
     var description = $('#description', app.dom.propertiesPanel).val();
 
+    var breakpoint = false;
+    if($('#breakpoint').text().indexOf("remove") != -1) {
+      breakpoint=true;
+    }
+    
     // Update properties
     var props = {}
     $('#properties-table > .editable-row', app.dom.propertiesPanel).each(function() {
@@ -1390,6 +1404,7 @@ this.app.helpers = this.app.helpers || {};
 
     app.block.title = title;
     app.block.description = description;
+    app.block.breakpoint = breakpoint;
     app.block.properties = props;
     app.block.mappings = mappings;
     app.block.redraw();
@@ -1828,11 +1843,11 @@ this.app.events = this.app.events || {};
     });
     
     goal.on('feedback', function(feedback) {
-      console.log('Feedback: ' + feedback.sequence);
+      console.log('Current node: ' + feedback.running_node);
     });
     
     goal.on('result', function(result) {
-      console.log('Final Result: ' + result.sequence);
+      console.log('Execution result: ' + result.result.status);
     });
     
     goal.send();
@@ -1846,6 +1861,17 @@ this.app.events = this.app.events || {};
   
   app.events.onButtonStopTree = function(event) {
     behavior_tree_action.cancel();
+  };
+  
+  app.events.onToggleBreakpoint = function(event) {
+    
+    if($('#breakpoint').text().indexOf("add") != -1) {
+      $('#breakpoint').html('remove breakpoint <i class="fa fa-minus-square">');
+      $('#breakpoint').css('color', '#DD0000');
+    } else {
+      $('#breakpoint').html('add breakpoint <i class="fa fa-plus-square"></i>');
+      $('#breakpoint').css('color', '#008CBA');
+    }
   };
   
   /* ========================================================================= */

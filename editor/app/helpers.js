@@ -93,6 +93,14 @@ this.app.helpers = this.app.helpers || {};
       $('#title', app.dom.propertiesPanel).val(block.title);
       $('#description', app.dom.propertiesPanel).val(block.description);
       
+      if(block.breakpoint == true) {
+        $('#breakpoint', app.dom.propertiesPanel).html('remove breakpoint <i class="fa fa-minus-square">');
+        $('#breakpoint', app.dom.propertiesPanel).css('color', '#DD0000');
+      } else {
+        $('#breakpoint', app.dom.propertiesPanel).html('add breakpoint <i class="fa fa-plus-square"></i>');
+        $('#breakpoint', app.dom.propertiesPanel).css('color', '#008CBA');
+      }
+      
       var propers = $('#properties-table', app.dom.propertiesPanel);
       app.helpers.remAllEditableRows(propers);
       for (var k in block.properties) {
@@ -118,6 +126,11 @@ this.app.helpers = this.app.helpers || {};
     var title = $('#title', app.dom.propertiesPanel).val();
     var description = $('#description', app.dom.propertiesPanel).val();
 
+    var breakpoint = false;
+    if($('#breakpoint').text().indexOf("remove") != -1) {
+      breakpoint=true;
+    }
+    
     // Update properties
     var props = {}
     $('#properties-table > .editable-row', app.dom.propertiesPanel).each(function() {
@@ -152,6 +165,7 @@ this.app.helpers = this.app.helpers || {};
 
     app.block.title = title;
     app.block.description = description;
+    app.block.breakpoint = breakpoint;
     app.block.properties = props;
     app.block.mappings = mappings;
     app.block.redraw();

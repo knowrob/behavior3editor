@@ -160,6 +160,7 @@ this.b3editor = this.b3editor || {};
       block.id = spec.id;
       block.title = spec.title;
       block.description = spec.description;
+      block.breakpoint = spec.breakpoint;
       block.properties = $.extend({}, spec.parameters, spec.properties);
       block.mappings = spec.mappings || {};
       block.redraw();
@@ -247,6 +248,7 @@ this.b3editor = this.b3editor || {};
       spec.name        = block.name,
       spec.title       = block.title,
       spec.description = block.description;
+      spec.breakpoint = block.breakpoint;
       spec.display     = {
         'x' : block.displayObject.x,
         'y' : block.displayObject.y
