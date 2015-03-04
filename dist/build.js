@@ -1424,7 +1424,10 @@ this.app.helpers = this.app.helpers || {};
 
     var row = $('<div class="editable-row"></div>');
     var colKey = $('<div class="editable-col key"><input type="text" placeholder="'+keyPlaceholder+'" value="'+key+'"></div>');
-    var colVal = $('<div class="editable-col value"><input type="text" placeholder="'+valuePlaceholder+'" value="'+value+'"></div>');
+    var colVal = $("<div class='editable-col value'><input type='text' placeholder='"+valuePlaceholder+"' value='"+value+"'></div>");
+    
+    console.log(colVal);
+    
     var colOp = $('<div class="editable-col operator"><input type="button" class="operator" value="-"></div>');
 
     colOp.click(app.events.onRemEditableRow);
@@ -2121,7 +2124,24 @@ this.b3editor = this.b3editor || {};
       block.title = spec.title;
       block.description = spec.description;
       block.breakpoint = spec.breakpoint;
-      block.properties = $.extend({}, spec.parameters, spec.properties);
+      
+      // interpret JSON-formatted code:
+      var props = {}
+      for (var key in spec.properties) {
+        
+        if(typeof spec.properties[key] === 'string' ||
+           typeof spec.properties[key] === 'number' ||
+           typeof spec.properties[key] === 'boolean') {
+          
+            console.log("Import string: " + spec.properties[key]);
+            props[key] = spec.properties[key];
+          } else {
+            console.log("Import JSON: " + JSON.stringify(spec.properties[key]));
+            props[key] = JSON.stringify(spec.properties[key]);
+          }
+      }       
+      block.properties = $.extend({}, spec.parameters, props);
+      
       block.mappings = spec.mappings || {};
       block.redraw();
 
@@ -2214,7 +2234,21 @@ this.b3editor = this.b3editor || {};
         'y' : block.displayObject.y
       }
       spec.parameters  = block.parameters;
-      spec.properties  = block.properties;
+      
+      // interpret JSON-formatted code:
+      spec.properties = {}
+      for (var key in block.properties) {
+        var val = "";
+        try {
+          val = JSON.parse(block.properties[key]);
+          console.log("Export JSON: " + block.properties[key]);
+        } catch (e) {
+          console.log("Error in JSON export: " + e);
+          val = block.properties[key];
+        }
+        spec.properties[key]  = val;  
+      } 
+      
       spec.mappings  = block.mappings;
 
       var children = block.getOutNodeIdsByOrder();

@@ -185,7 +185,7 @@ this.app.helpers = this.app.helpers || {};
 
     var row = $('<div class="editable-row"></div>');
     var colKey = $('<div class="editable-col key"><input type="text" placeholder="'+keyPlaceholder+'" value="'+key+'"></div>');
-    var colVal = $('<div class="editable-col value"><input type="text" placeholder="'+valuePlaceholder+'" value="'+value+'"></div>');
+    var colVal = $("<div class='editable-col value'><input type='text' placeholder='"+valuePlaceholder+"' value='"+value+"'></div>");
     var colOp = $('<div class="editable-col operator"><input type="button" class="operator" value="-"></div>');
 
     colOp.click(app.events.onRemEditableRow);

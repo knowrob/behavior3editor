@@ -161,7 +161,21 @@ this.b3editor = this.b3editor || {};
       block.title = spec.title;
       block.description = spec.description;
       block.breakpoint = spec.breakpoint;
-      block.properties = $.extend({}, spec.parameters, spec.properties);
+      
+      // interpret JSON-formatted code:
+      var props = {}
+      for (var key in spec.properties) {
+        
+        if(typeof spec.properties[key] === 'string' ||
+           typeof spec.properties[key] === 'number' ||
+           typeof spec.properties[key] === 'boolean') {
+            props[key] = spec.properties[key];
+          } else {
+            props[key] = JSON.stringify(spec.properties[key]);
+          }
+      }       
+      block.properties = $.extend({}, spec.parameters, props);
+      
       block.mappings = spec.mappings || {};
       block.redraw();
 
@@ -254,7 +268,19 @@ this.b3editor = this.b3editor || {};
         'y' : block.displayObject.y
       }
       spec.parameters  = block.parameters;
-      spec.properties  = block.properties;
+      
+      // interpret JSON-formatted code:
+      spec.properties = {}
+      for (var key in block.properties) {
+        var val = "";
+        try {
+          val = JSON.parse(block.properties[key]);
+        } catch (e) {
+          val = block.properties[key];
+        }
+        spec.properties[key]  = val;  
+      } 
+      
       spec.mappings  = block.mappings;
 
       var children = block.getOutNodeIdsByOrder();
