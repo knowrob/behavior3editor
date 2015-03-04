@@ -1416,18 +1416,15 @@ this.app.helpers = this.app.helpers || {};
   /* EDITABLE TABLES ========================================================= */
   app.helpers.addEditableRow = function(table, key, value, keyPlaceholder, valuePlaceholder) {
     key = key || '';
-    if (value === null) {
+//     if (value === null) {
       value = value || '';
-    }
+//     }
     keyPlaceholder=keyPlaceholder||'Key';
     valuePlaceholder=valuePlaceholder||'Value';
 
     var row = $('<div class="editable-row"></div>');
     var colKey = $('<div class="editable-col key"><input type="text" placeholder="'+keyPlaceholder+'" value="'+key+'"></div>');
     var colVal = $("<div class='editable-col value'><input type='text' placeholder='"+valuePlaceholder+"' value='"+value+"'></div>");
-    
-    console.log(colVal);
-    
     var colOp = $('<div class="editable-col operator"><input type="button" class="operator" value="-"></div>');
 
     colOp.click(app.events.onRemEditableRow);
@@ -2132,11 +2129,8 @@ this.b3editor = this.b3editor || {};
         if(typeof spec.properties[key] === 'string' ||
            typeof spec.properties[key] === 'number' ||
            typeof spec.properties[key] === 'boolean') {
-          
-            console.log("Import string: " + spec.properties[key]);
             props[key] = spec.properties[key];
           } else {
-            console.log("Import JSON: " + JSON.stringify(spec.properties[key]));
             props[key] = JSON.stringify(spec.properties[key]);
           }
       }       
@@ -2241,9 +2235,7 @@ this.b3editor = this.b3editor || {};
         var val = "";
         try {
           val = JSON.parse(block.properties[key]);
-          console.log("Export JSON: " + block.properties[key]);
         } catch (e) {
-          console.log("Error in JSON export: " + e);
           val = block.properties[key];
         }
         spec.properties[key]  = val;  

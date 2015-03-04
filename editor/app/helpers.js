@@ -177,9 +177,7 @@ this.app.helpers = this.app.helpers || {};
   /* EDITABLE TABLES ========================================================= */
   app.helpers.addEditableRow = function(table, key, value, keyPlaceholder, valuePlaceholder) {
     key = key || '';
-    if (value === null) {
-      value = value || '';
-    }
+    value = value || '';
     keyPlaceholder=keyPlaceholder||'Key';
     valuePlaceholder=valuePlaceholder||'Value';
 
