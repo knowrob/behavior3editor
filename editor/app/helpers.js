@@ -181,9 +181,12 @@ this.app.helpers = this.app.helpers || {};
     keyPlaceholder=keyPlaceholder||'Key';
     valuePlaceholder=valuePlaceholder||'Value';
 
+    // escape HTML quotes:
+    value = value.replace(/&/g, "&amp;").replace(/\"/g,'&quot;').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+    
     var row = $('<div class="editable-row"></div>');
     var colKey = $('<div class="editable-col key"><input type="text" placeholder="'+keyPlaceholder+'" value="'+key+'"></div>');
-    var colVal = $("<div class='editable-col value'><input type='text' placeholder='"+valuePlaceholder+"' value='"+value+"'></div>");
+    var colVal = $('<div class="editable-col value"><input type="text" placeholder="'+valuePlaceholder+'" value="'+value+'"></div>');
     var colOp = $('<div class="editable-col operator"><input type="button" class="operator" value="-"></div>');
 
     colOp.click(app.events.onRemEditableRow);
