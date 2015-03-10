@@ -1,24 +1,33 @@
 <!-- MODAL IMPORT TREE -->
-<div id="modalImportTree" class="reveal-modal" data-reveal data-options="close_on_background_click: false; animation: fade; animation_speed: 150">
-  <h2>Import Tree</h2>
-  <a class="close-reveal-modal">&#215;</a>
 
-  <div class="content spacing-bot">
-    <form>
-      <textarea id="import-entry" class="input_textarea" placeholder="Copy your JSON here"></textarea>
-    </form>
-  </div>
+<div class="modal fade" id="modalImportTree">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Import Tree</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <form>
+              <textarea id="import-entry" class="field col-md-12" placeholder="Copy your JSON here"></textarea>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <div class="pull-left">
+          <button type="button" class="btn btn-default" onclick="$('#import-entry').select();" class="btn btn-primary">Select All</button>
+          <button type="button" class="btn btn-default" onclick="$('#import-entry').val('');" class="btn btn-primary">Clear</button>
+        </div>
+        <div class="pull-right">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" onclick="app.events.onButtonImportTree(); $('#modalImportTree').modal('hide');" class="btn btn-primary">Continue</button>
+        </div>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-  <div class="operations">
-    <div class="clearfix">
-
-      <a onclick="app.events.onButtonImportTree(); $('#modalNewTree').foundation('reveal', 'close');" href="#" class="button right small nopadding">Continue</a>
-      <a onclick="$('#modalNewTree').foundation('reveal', 'close');" href="#" class="button right secondary small">Cancel</a>
-
-      <a href="#" onclick="$('#import-entry').select();" class="button secondary left small">Select All</a>
-
-      <a href="#" onclick="$('#import-entry').val('');" class="button secondary left small">Clear</a>
-    </div>
-  </div>
-</div>
 <!-- END MODAL IMPORT TREE -->

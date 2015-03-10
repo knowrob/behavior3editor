@@ -1,20 +1,27 @@
 <!-- MODAL EXPORT TREE -->
-<div id="modalExportTree" class="reveal-modal" data-reveal data-options="close_on_background_click: false; animation: fade; animation_speed: 150">
-  <h2>Export Tree</h2>
-  <a class="close-reveal-modal">&#215;</a>
 
-  <div class="content spacing-bot">
-    <form>
-      <textarea id="export-entry" class="input_textarea" placeholder="Exporting model, please wait..."></textarea>
-    </form>
-  </div>
+<div class="modal fade" id="modalExportTree">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Export Tree</h4>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <form>
+              <textarea id="export-entry" class="field col-md-12" placeholder="Exporting model, please wait..."></textarea>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" onclick="$('#export-entry').select();">Select All</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-  <div class="operations">
-    <div class="clearfix">
-      <a onclick="$('#modalNewTree').foundation('reveal', 'close');" href="#" class="button right small">Close</a>
-
-      <a href="#" onclick="$('#export-entry').select();" class="button secondary left small nopadding">Select All</a>
-    </div>
-  </div>
-</div>
 <!-- END MODAL EXPORT TREE -->

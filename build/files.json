@@ -26,27 +26,25 @@
     "../editor/libs/opensans-0.1.0.js",
     "../editor/libs/jquery-2.1.1.min.js",
     "../editor/libs/jqueryui-1.11.2.min.js",
-    "../editor/libs/foundation-5.5.0.min.js",
     "../editor/libs/easeljs-0.8.0.min.js",
     "../editor/libs/creatine-0.2.0.min.js",
     "../editor/libs/handlebars-2.0.0.min.js",
     "../editor/libs/keymaster-1.6.3.min.js",
     "../editor/libs/nanoscrollerjs-0.8.4.min.js",
-    "../editor/libs/collapsable-0.1.0.min.js",
     "../editor/libs/behavior3-0.2.0dev.min.js",
     "../editor/libs/notifyjs-0.3.1.min.js"
   ],
   "css": [
-    "../editor/css/foundation-5.5.0.min.css",
     "../editor/css/fontawesome-4.2.0.min.css",
     "../editor/css/nanoscrollerjs-0.8.4.min.css",
-    "../editor/css/editor.css"
+    "../editor/css/editor.css",
+    "../editor/css/preload.css"
   ],
   "html": [
     "../editor/app/templates/menu.html",
     "../editor/app/templates/left.html",
-    "../editor/app/templates/right.html",
     "../editor/app/templates/canvas.html",
+    "../editor/app/templates/right.html",
     "../editor/app/templates/modal_newtree.html",
     "../editor/app/templates/modal_importtree.html",
     "../editor/app/templates/modal_exporttree.html",

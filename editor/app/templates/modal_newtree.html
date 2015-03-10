@@ -1,18 +1,22 @@
 <!-- MODAL NEW TREE -->
-<div id="modalNewTree" class="reveal-modal tiny" data-reveal data-options="close_on_background_click: false; animation: fade; animation_speed: 150">
-  <h2>New Tree</h2>
-  <a class="close-reveal-modal">&#215;</a>
-  
-  <div class="content spacing-bot">
-    <p>Creating a new tree will erase the current content without saving it.</p>
-    <p>Do you want to continue?</p>
-  </div>
 
-  <div class="operations">
-    <div class="clearfix">
-      <a onclick="app.events.onButtonNewTree(); $('#modalNewTree').foundation('reveal', 'close');" href="#" class="button right small nopadding">Continue</a>
-      <a onclick="$('#modalNewTree').foundation('reveal', 'close');" href="#" class="button right secondary small">Cancel</a>
-    </div>
-  </div>
-</div>
+<div class="modal fade" id="modalNewTree">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">New Tree</h4>
+      </div>
+      <div class="modal-body">
+        <p>Creating a new tree will erase the current content without saving it.</p>
+        <p>Do you want to continue?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" onclick="app.events.onButtonNewTree();  $('#modalNewTree').modal('hide');" class="btn btn-primary">Continue</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <!-- END MODAL NEW TREE -->

@@ -1,82 +1,65 @@
-<nav class="side-bar right" style="">
-  <div class="wrap">
-    <div class="tabs" data-tab>
-      <span class="active">
-        <a href="#tab-properties">Properties</a>
-      </span>
-      <!-- <span>
-        <a href="#tab-help">Help</a>
-      </span> -->
-    </div>
 
-    <div class="tabs-content">
-      <div class="content active" id="tab-properties">
-        
+<div class="col-sm-3 col-md-2">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><a href="#tab-nodelist">Properties</a></h3>
+      </div>
+      <div class="panel-body">
         <!-- PROPERTIES -->
-        <div class="nano">
-          <div class="nano-content">
         
-            <div id="properties-panel-alternate" class="app-panel text-center">
+        <div id="properties-panel-alternate" class="app-panel text-center">
 
+        </div>
+
+        <div id="properties-panel" class="app-panel hide">
+          <form class="">
+            <div>
+              <label>Title<span style="float:right; font-size:10pt;">
+                <a onclick="app.events.onToggleBreakpoint();" href="#" id="breakpoint"></a>
+              </span>
+                <input id="title" type="text" placeholder="Node title" onkeyup="app.events.onPropertyChange(event);" />
+              </label>
             </div>
 
-            <div id="properties-panel" class="app-panel hide">
-              <form class="">
-                <div>
-                  <label>Title<span style="float:right; font-size:10pt;">
-                    <a onclick="app.events.onToggleBreakpoint();" href="#" id="breakpoint"></a>
-                  </span>
-                    <input id="title" type="text" placeholder="Node title" onkeyup="app.events.onPropertyChange(event);" />
-                  </label>
-                </div>
-
-                <div>
-                  <label>Description
-                    <input id="description" type="text" placeholder="Node description" onchange=""/>
-                  </label>
-                </div>
-
-                <div>
-                  <label>Properties</label>
-                  <div id="properties-table" class="editable-table">
-                    <!-- UPDATED AUTOMATICALLY -->
-                  </div>
-                  <div class="editable-operators clearfix">
-                    <div class="operator">
-                      <input type="button" class="operator" onclick="app.events.onAddEditableRow($('#properties-table'));" value="+">
-                    </div>
-                  </div>
-                  <div>
-                    <label>Key Mappings</label>
-                    
-                    <div id="mappings-table" class="editable-table">
-                      <!-- UPDATED AUTOMATICALLY -->
-                    </div>
-                    <div class="editable-operators clearfix">
-                      <div class="operator">
-                        <input type="button" class="operator" onclick="app.events.onAddEditableRow($('#mappings-table'), '', '', 'In', 'Out');" value="+">
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </form>
+            <div>
+              <label>Description
+                <input id="description" type="text" placeholder="Node description" onchange=""/>
+              </label>
             </div>
-          </div>
+
+            <div>
+              <label>Properties</label>
+              <div id="properties-table" class="editable-table">
+                <!-- UPDATED AUTOMATICALLY -->
+              </div>
+              <div class="editable-operators clearfix">
+                <div class="operator">
+                  <input type="button" class="operator" onclick="app.events.onAddEditableRow($('#properties-table'));" value="+">
+                </div>
+              </div>
+              <div>
+                <label>Key Mappings</label>
+                
+                <div id="mappings-table" class="editable-table">
+                  <!-- UPDATED AUTOMATICALLY -->
+                </div>
+                <div class="editable-operators clearfix">
+                  <div class="operator">
+                    <input type="button" class="operator" onclick="app.events.onAddEditableRow($('#mappings-table'), '', '', 'In', 'Out');" value="+">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
         </div>
         <!-- END PROPERTIES -->
-
-
-      </div>
-      <div class="content" id="tab-help">
-        <div class="nano">
-          <div class="nano-content">
-        
-            <div id="help-panel" class="app-panel">
-              help
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
-</nav> 
+</div>
+</div>
+
+
+</div> <!-- END ROW -->
+
+</div> <!-- END PAGE CONTENT -->
+
+ 

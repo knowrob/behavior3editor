@@ -1,41 +1,42 @@
-MODAL EXPORT TREE -->
-<div id="modalAddNode" class="reveal-modal" data-reveal data-options="close_on_background_click: false; animation: fade; animation_speed: 150">
-  <h2>Add Nodes</h2>
-  <a class="close-reveal-modal">&#215;</a>
+<!--MODAL ADD NODE -->
 
-  <div class="content spacing-bot">
-    <form>
+<div class="modal fade" id="modalAddNode">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Add Nodes</h4>
+      </div>
+      <div class="modal-body">
+        <form>
 
-      <table class="dynamic-table operators">
-        <tbody>
-          <tr>
-            <td colspan="3"></td>
-            <td class="operator">
-              <input type="button" class="operator" onclick="app.events.onAddDynamicRow($('#addnode-table'));" value="+">
-            </td>
-          </tr>
-          <!-- UPDATED AUTOMATICALLY -->
-        </tbody>
-      </table>
-    
-      <table id="addnode-table" class="dynamic-table">
-        <tbody>
+          <table class="dynamic-table operators">
+            <tbody>
+              <tr>
+                <td colspan="3"></td>
+                <td class="operator">
+                  <input type="button" class="operator" onclick="app.events.onAddDynamicRow($('#addnode-table'));" value="+">
+                </td>
+              </tr>
+              <!-- UPDATED AUTOMATICALLY -->
+            </tbody>
+          </table>
+        
+          <table id="addnode-table" class="dynamic-table">
+            <tbody>
 
-          <!-- UPDATED AUTOMATICALLY -->
-        </tbody>
-      </table>
+              <!-- UPDATED AUTOMATICALLY -->
+            </tbody>
+          </table>
 
-    </form>
-  </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="app.helpers.addCustomNodes($('#addnode-table')); $('#modalAddNode').modal('hide');">Add</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-  <div class="operations">
-    <div class="clearfix">
-
-      <a onclick="app.helpers.addCustomNodes($('#addnode-table')); $('#modalAddNode').foundation('reveal', 'close');" href="#" class="button right small nopadding">Add</a>
-
-      <a href="#" onclick="$('#modalAddNode').foundation('reveal', 'close');" class="button secondary right small">Cancel</a>
-
-    </div>
-  </div>
-</div>
-<!-- END MODAL EXPORT TREE
+<!-- END MODAL ADD NODE -->

@@ -1,18 +1,20 @@
-<!-- MODAL NEW TREE -->
-<div id="modalFirstTime" class="reveal-modal tiny" data-reveal data-options="close_on_background_click: false; animation: fade; animation_speed: 150">
-  <h2>Hello!</h2>
-  <a class="close-reveal-modal">&#215;</a>
-  
-  <div class="content spacing-bot">
-    <p>It seems to be your first time here!</p>
-    <p>Please, take a few minutes to look at the <a href="https://github.com/renatopp/behavior3js/wiki">GUIDE</a> before using this editor.</p>
-  </div>
-
-  <div class="operations">
-    <div class="clearfix">
-      <a onclick=" window.open('https://github.com/renatopp/behavior3js/wiki', '_blank'); $('#modalFirstTime').foundation('reveal', 'close');" href="#" class="button right small nopadding">Continue</a>
-      <a onclick="$('#modalFirstTime').foundation('reveal', 'close');" href="#" class="button right secondary small">Cancel</a>
-    </div>
-  </div>
-</div>
-<!-- END MODAL NEW TREE -->
+<!-- MODAL FIRST TIME -->
+<div class="modal fade" id="modalFirstTime">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Hello!</h4>
+      </div>
+      <div class="modal-body">
+        <p>It seems to be your first time here!</p>
+        <p>Please, take a few minutes to look at the <a href="https://github.com/renatopp/behavior3js/wiki">GUIDE</a> before using this editor.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" onclick="window.open('https://github.com/renatopp/behavior3js/wiki', '_blank'); $('#modalFirstTime').modal('hide');" class="btn btn-primary">Continue</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+<!-- END MODAL FIRST TIME -->

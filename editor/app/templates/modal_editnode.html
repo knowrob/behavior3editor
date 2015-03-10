@@ -1,38 +1,42 @@
-<!-- MODAL NEW TREE -->
-<div id="modalEditNode" class="reveal-modal medium" data-reveal data-options="close_on_background_click: false; animation: fade; animation_speed: 150">
-  <h2>Edit Node</h2>
-  <a class="close-reveal-modal">&#215;</a>
-  
-  <div class="content spacing-bot">
-    <table id="editnode-table" class="dynamic-table">
-      <tbody>
-        <tr style="display: table-row;">
-          <td>
-            <input id="name" type="text" placeholder="Node name" value="">
-          </td>
-          <td>
-            <input id="title" type="text" placeholder="Node title" value="">
-          </td>
-          <!-- <td>
-            <select id="category">
-              <option value="composite">Composite</option>
-              <option value="decorator">Decorator</option>
-              <option value="condition">Condition</option>
-              <option value="action" selected="">Action</option>
-            </select> -->
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+<!-- MODAL EDIT NODE -->
+<div class="modal fade" id="modalEditNode">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Edit Node</h4>
+      </div>
+      <div class="modal-body">
+        <table id="editnode-table" class="dynamic-table">
+          <tbody>
+            <tr style="display: table-row;">
+              <td>
+                <input id="name" type="text" placeholder="Node name" value="">
+              </td>
+              <td>
+                <input id="title" type="text" placeholder="Node title" value="">
+              </td>
+              <!-- <td>
+                <select id="category">
+                  <option value="composite">Composite</option>
+                  <option value="decorator">Decorator</option>
+                  <option value="condition">Condition</option>
+                  <option value="action" selected="">Action</option>
+                </select> -->
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <div class="pull-left">
+          <button type="button" class="btn btn-danger" onclick="app.events.onNodeEditRemove();  $('#modalEditNode').modal('hide');">Remove</button>
+        </div>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+        <button type="button" class="btn btn-primary" onclick="app.events.onNodeEditSave(); $('#modalEditNode').modal('hide');">Save</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-  <div class="operations">
-    <div class="clearfix">
-      <a onclick="app.events.onNodeEditSave(); $('#modalEditNode').foundation('reveal', 'close');" href="#" class="button right small nopadding">Save</a>
-      <a onclick="$('#modalEditNode').foundation('reveal', 'close');" href="#" class="button right secondary small">Cancel</a>
-
-      <a href="#" onclick="app.events.onNodeEditRemove(); $('#modalEditNode').foundation('reveal', 'close');" class="button alert left small">Remove</a>
-    </div>
-  </div>
-</div>
-<!-- END MODAL NEW TREE -->
+<!-- END MODAL EDIT NODE -->

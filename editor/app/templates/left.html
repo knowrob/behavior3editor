@@ -1,26 +1,8 @@
-<nav class="side-bar left" style="">
-  <div class="wrap">
-    <div class="tabs" data-tab>
-      <span class="active">
-        <a href="#tab-nodelist">Node List</a>
-      </span>
-    </div>
 
-    <div class="tabs-content">
-      <div class="content active" id="tab-nodelist">
-        <div class="nano">
-          <div class="nano-content">
-            <div class="app-panel">
-              <div id="nodes-panel">
-                
-              </div>
-              <div class="nodes-operators clearfix">
-                <input type="button" class="operator" onclick="app.helpers.resetDynamicTable($('#addnode-table'));" data-reveal-id="modalAddNode" value="Add Custom Nodes">
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div class="col-sm-3 col-md-2">
+  <div class="panel-group" id="nodes-panel-group">
+
   </div>
-</nav> 
+  <input type="button" class="btn btn-default" onclick="app.helpers.resetDynamicTable($('#addnode-table'));" data-toggle="modal" data-target="#modalAddNode" value="Add Custom Nodes">
+</div>
+ 

@@ -53,7 +53,7 @@ this.app.dom = this.app.dom || {};
     app.dom.gameCanvas               = $('#game-canvas');
     
     // panels
-    app.dom.nodesPanel               = $('#nodes-panel');
+    app.dom.nodesPanel               = $('#nodes-panel-group');
     app.dom.propertiesPanel          = $('#properties-panel');
     app.dom.propertiesAlternatePanel = $('#properties-panel-alternate');
     app.dom.helpPanel                = $('#help-panel');
@@ -93,15 +93,15 @@ this.app.dom = this.app.dom || {};
     app.helpers.updateNodes();
     app.helpers.updateShortcuts();
 
-    if (app.storage.get('firsttime') === true) {
-      app.storage.set('firsttime', false);
-      $('#modalFirstTime').foundation('reveal', 'open');
-    }
+//     if (app.storage.get('firsttime') === true) {
+//       app.storage.set('firsttime', false);
+//       $('#modalFirstTime').foundation('reveal', 'open');
+//     }
   }
 
   app.initializePlugins = function() {
-    $('.nano').nanoScroller();
-    $(document).foundation();
+//     $('.nano').nanoScroller();
+    //$(document).foundation();
     // $(document).foundation('joyride', 'start');
     $.notify.defaults({
       // whether to hide the notification on click

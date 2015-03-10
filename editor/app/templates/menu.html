@@ -1,23 +1,34 @@
 <!-- NAV BAR -->
-<nav id="main-menu" class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
-  <ul class="title-area">
-    <li class="name">
-      <h1><a href="http://behavior3js.guineashots.com">Behavior3JS</a></h1>
-    </li>
-     <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-    <li class="toggle-topbar menu-icon"><a href="#"><span>Menu</span></a></li>
-  </ul>
 
-  <section class="top-bar-section">
+<nav class="navbar navbar-default navbar-static-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#"><img alt="Brand" src="knowrob.png" width="80px"></img></a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Dashboard</a></li>
+        <li class="active"><a href="#">Task Editor <span class="sr-only">(current)</span></a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+<div class="container-fluid "> <!-- Page content -->
+  <nav class="navbar navbar-default" id="main-menu">
+  <div class="container-fluid">
+
     <!-- LEFT SECTION -->
-    <ul class="left">
+    <ul class="nav navbar-nav navbar-left">
 
       <!-- MENU FILE -->
-      <li class="has-dropdown">
-        <a href="#">File</a>
-        <ul class="dropdown">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">File<span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
           <li>
-            <a href="#" data-reveal-id="modalNewTree">
+            <a href="#" data-toggle="modal" data-target="#modalNewTree">
               <div class="clearfix">
                 <span class="name">New Tree</span>
                 <span id="key_new_tree" class="key"></span>
@@ -25,7 +36,7 @@
             </a>
           </li>
           <li>
-            <a href="#" data-reveal-id="modalImportTree">
+            <a href="#" data-toggle="modal" data-target="#modalImportTree">
               <div class="clearfix">
                 <span class="name">Import Tree</span>
                 <span id="key_import_tree" class="key"></span>
@@ -33,7 +44,7 @@
             </a>
           </li>
           <li>
-            <a onclick="app.events.onButtonExportTree();" data-reveal-id="modalExportTree" href="#">
+            <a onclick="app.events.onButtonExportTree();" data-toggle="modal" data-target="#modalExportTree" href="#">
               <div class="clearfix">
                 <span class="name">Export Tree</span>
                 <span id="key_export_tree" class="key"></span>
@@ -42,23 +53,21 @@
           </li>
           <li class="divider"></li>
           <li>
-            <a onclick="app.helpers.resetDynamicTable($('#addnode-table'));" data-reveal-id="modalAddNode" href="#">
+            <a onclick="app.helpers.resetDynamicTable($('#addnode-table'));" data-toggle="modal" data-target="#modalAddNode" href="#">
               <div class="clearfix">
                 <span class="name">Add Custom Node</span>
                 <span id="key_export_tree" class="key"></span>
               </div>
             </a>
           </li>
-          <!-- <li class="divider"></li> -->
-          <!-- <li><a onclick="editor.app.events.onButtonPreferences();" href="#">Preferences</a></li> -->
         </ul>
       </li>
       <!-- END MENU FILE -->
 
       <!-- MENU EDIT -->
-      <li class="has-dropdown">
-        <a href="#">Edit</a>
-        <ul class="dropdown">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Edit <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
           <li>
             <a onclick="app.events.onButtonCopy();" href="#">
               <div class="clearfix">
@@ -119,11 +128,12 @@
         </ul>
       </li>
       <!-- END MENU EDIT -->
-
+      
+      
       <!-- MENU VIEW -->
-      <li class="has-dropdown">
-        <a href="#">View</a>
-        <ul class="dropdown">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">View <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
           <li>
             <a onclick="app.events.onButtonAutoOrganize();" href="#">
               <div class="clearfix">
@@ -151,40 +161,6 @@
           </li>
         </ul>
       </li>
-      <!-- END MENU VIEW -->
-
-      <!-- MENU SELECTION -->
-      <li class="has-dropdown">
-        <a href="#">Selection</a>
-        <ul class="dropdown">
-          <li>
-            <a onclick="app.events.onButtonSelectAll();" href="#">
-              <div class="clearfix">
-                <span class="name">Select All</span>
-                <span id="key_select_all" class="key"></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a onclick="app.events.onButtonDeselectAll();" href="#">
-              <div class="clearfix">
-                <span class="name">Deselect All</span>
-                <span id="key_deselect_all" class="key"></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a onclick="app.events.onButtonInvertSelection();" href="#">
-              <div class="clearfix">
-                <span class="name">Invert Selection</span>
-                <span id="key_invert_selection" class="key"></span>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </li>
-      <!-- END MENU SELECTION -->
-      
       
       <!-- MENU RUN -->
       <li>
@@ -212,70 +188,9 @@
         <a onclick="app.events.onButtonStopTree();" href="#"><i class="fa fa-stop"></i></a>
       </li>
       <!-- END MENU DEBUG -->
-        
-    </ul>
-    <!-- END LEFT SECTION -->
+  </div>
+  </nav>
 
-    <!-- RIGHT SECTION -->
-    <ul class="right">
-
-      <li class="has-dropdown">
-        <a href="#">Help</a>
-        <ul class="dropdown">
-          <li>
-            <a href="https://github.com/renatopp/behavior3js/wiki" target="_blank">
-              <div class="clearfix">
-                <span class="name">Editor Guide</span>
-                <span class="key"></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/renatopp/behavior3js/wiki" target="_blank">
-              <div class="clearfix">
-                <span class="name">Core Guide</span>
-                <span class="key"></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="http://docs.guineashots.com/behavior3js/" target="_blank">
-              <div class="clearfix">
-                <span class="name">API</span>
-                <span class="key"></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="https://github.com/renatopp/behavior3js/issues" target="_blank">
-              <div class="clearfix">
-                <span class="name">Issues</span>
-                <span class="key"></span>
-              </div>
-            </a>
-          </li>
-          <li class="divider"></li>
-          <li>
-            <a href="http://guineashots.com/projects/" target="_blank">
-              <div class="clearfix">
-                <span class="name">Other Projects</span>
-                <span class="key"></span>
-              </div>
-            </a>
-          </li>
-          <li>
-            <a href="http://guineashots.com" target="_blank">
-              <div class="clearfix">
-                <span class="name">Guineashots.com</span>
-                <span class="key"></span>
-              </div>
-            </a>
-          </li>
-        </ul>
-      </li>
-    </ul>
-    <!-- END RIGHT SECTION -->
-
-  </section>
-</nav>
 <!-- END NAV BAR -->
+
+<div class="row"> <!-- BEGIN PAGE CONTENT ROW -->

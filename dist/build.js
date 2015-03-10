@@ -1243,13 +1243,54 @@ this.app.helpers = this.app.helpers || {};
 (function() {
   "use strict";
 
+  
+  
+  
+  var _createCategory = function(category, list) {
+    // this.addHeaderToList(category);
+    var header = _createHeader(category);
+    list.append(header);
+    
+    for (var id in app.editor.nodes) {
+      var node = app.editor.nodes[id];
+      
+      if (node.prototype.category == category) {
+        var title = node.prototype.title || node.prototype.name,
+ title = title.replace(/(<\w+>)/g, function(match, key) { return '@'; });
+ 
+ var item = _createItem(title, node.prototype.name );
+ list.append(item);
+      }
+    }
+    //     return items;
+  };
+  var createList = function() {
+    var list = $('#node-list')
+    _createCategory('composite', list);
+    _createCategory('decorator', list);
+    _createCategory('condition', list);
+    _createCategory('action', list);
+    
+    return list;
+  };
+  
+  
+  
+  
+  
+  
   /* PANELS ================================================================== */
   var _createHeader = function(category) {
-    var header = $('<li class="header"><a href="#">'+category+'</a></li>');
+    var header = $('<div class="panel panel-default">' +
+                   '  <div class="panel-heading">' +
+                   '    <h4 class="panel-title text-uppercase">' +
+                   '      <a class="collapsed" data-toggle="collapse" data-target="#collapse' + category + '" data-parent="#nodes-panel-group" aria-expanded="false" aria-controls="#collapse' + category + '">'+category+'</a>' +
+                   '    </h4>' +
+                   '  </div>');
     return header;
   };
   var _createItem = function(title, name) {
-    var item = $('<li class="item"></li>');
+    var item = $('<li class="list-group-item"></li>');
     var link = $('<a href="#">'+title+'</a>');
     link.attr('data-name', name);
     link.attr('id', 'node-'+name);
@@ -1257,9 +1298,10 @@ this.app.helpers = this.app.helpers || {};
     return item;
   };
   var _createCategory = function(category) {
-    // this.addHeaderToList(category);
     var header = _createHeader(category);
-    var items = $('<ul></ul>');
+    
+    var panel = $('<div id="collapse' + category + '" class="panel-collapse collapse in">');
+    var list  = $('<ul class="list-group">');
 
     for (var id in app.editor.nodes) {
       var node = app.editor.nodes[id];
@@ -1269,14 +1311,15 @@ this.app.helpers = this.app.helpers || {};
         title = title.replace(/(<\w+>)/g, function(match, key) { return '@'; });
 
         var item = _createItem(title, node.prototype.name );
-        items.append(item);
+        list.append(item);
       }
     }
-    header.append(items);
+    panel.append(list);
+    header.append(panel);
     return header;
   };
   var createList = function() {
-    var list = $('<ul id="node-list"><ul>')
+    var list = $('<div></div>');
     list.append(_createCategory('composite'));
     list.append(_createCategory('decorator'));
     list.append(_createCategory('condition'));
@@ -1287,14 +1330,15 @@ this.app.helpers = this.app.helpers || {};
 
   app.helpers.updateNodes = function() {
     var list = createList();
+    
     app.dom.nodesPanel.html(list);
-    app.dom.nodesComp = $('#node-list');
+    app.dom.nodesComp = $('#nodes-panel-group');
 
-    app.helpers._updateCollapsable();
+//     app.helpers._updateCollapsable();
     app.helpers._updateDraggable();
     app.helpers._updateDroppable();
 
-    $('li.item a', app.dom.nodesComp).each(function() {
+    $('li.list-group-item a', app.dom.nodesComp).each(function() {
       var link = $(this);
 
       var name = link.attr('data-name');
@@ -1547,12 +1591,9 @@ this.app.helpers = this.app.helpers || {};
   /* ========================================================================= */
 
   /* JS PLUGINS ============================================================== */
-  app.helpers._updateCollapsable = function() {
-    app.dom.nodesComp.collapsable();
-  };
 
   app.helpers._updateDraggable = function() {
-    $('li.item > a', app.dom.nodesComp).draggable({
+    $('.list-group-item > a', app.dom.nodesComp).draggable({
       cursorAt : {top: 100, left: 200},
       appendTo : "body",
       helper   : app.events.onNodeDrag
@@ -2134,8 +2175,6 @@ this.b3editor = this.b3editor || {};
           } else {
             props[key] = JSON.stringify(spec.properties[key]);
           }
-          
-          console.log("importing " + props[key]);
       }       
       block.properties = $.extend({}, spec.parameters, props);
       
@@ -2241,7 +2280,6 @@ this.b3editor = this.b3editor || {};
         } catch (e) {
           val = block.properties[key];
         }
-        console.log("exporting " + val);
         spec.properties[key]  = val;  
       } 
       
@@ -2655,7 +2693,7 @@ this.app.dom = this.app.dom || {};
     app.dom.gameCanvas               = $('#game-canvas');
     
     // panels
-    app.dom.nodesPanel               = $('#nodes-panel');
+    app.dom.nodesPanel               = $('#nodes-panel-group');
     app.dom.propertiesPanel          = $('#properties-panel');
     app.dom.propertiesAlternatePanel = $('#properties-panel-alternate');
     app.dom.helpPanel                = $('#help-panel');
@@ -2695,15 +2733,15 @@ this.app.dom = this.app.dom || {};
     app.helpers.updateNodes();
     app.helpers.updateShortcuts();
 
-    if (app.storage.get('firsttime') === true) {
-      app.storage.set('firsttime', false);
-      $('#modalFirstTime').foundation('reveal', 'open');
-    }
+//     if (app.storage.get('firsttime') === true) {
+//       app.storage.set('firsttime', false);
+//       $('#modalFirstTime').foundation('reveal', 'open');
+//     }
   }
 
   app.initializePlugins = function() {
-    $('.nano').nanoScroller();
-    $(document).foundation();
+//     $('.nano').nanoScroller();
+    //$(document).foundation();
     // $(document).foundation('joyride', 'start');
     $.notify.defaults({
       // whether to hide the notification on click
