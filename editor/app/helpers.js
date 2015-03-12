@@ -99,26 +99,27 @@ this.app.helpers = this.app.helpers || {};
     app.helpers._updateDraggable();
     app.helpers._updateDroppable();
 
-    $('li.list-group-item a', app.dom.nodesComp).each(function() {
-      var link = $(this);
-
-      var name = link.attr('data-name');
-      if (b3[name]) return; // if node in b3, do not edit
-
-      var edit = $('<a href="#" class="edit right">Edit</a>');
-
-      edit.hide();
-      edit.click(function(e) {
-        app.events.onOpenEditNodeModal(e);
-      });
-      edit.attr('data-reveal-id', 'modalEditNode');
-      link.addClass('node');
-      link.append(edit);
-
-      link.hover(function() {
-        edit.toggle();
-      });
-    })
+//     MT: disabled editing of custom nodes
+//     $('li.list-group-item a', app.dom.nodesComp).each(function() {
+//       var link = $(this);
+// 
+//       var name = link.attr('data-name');
+//       if (b3[name]) return; // if node in b3, do not edit
+// 
+//       var edit = $(' <a href="#" class="edit">(Edit)</a>');
+// 
+//       edit.hide();
+//       edit.click(function(e) {
+//         app.events.onOpenEditNodeModal(e);
+//       });
+//       edit.attr('data-reveal-id', 'modalEditNode');
+//       link.addClass('node');
+//       link.append(edit);
+// 
+//       link.hover(function() {
+//         edit.toggle();
+//       });
+//     })
   };
   app.helpers.updateProperties = function(block) {
     if (app.block) {
@@ -128,11 +129,11 @@ this.app.helpers = this.app.helpers || {};
     app.block = block;
 
     if (!block) {
-      app.dom.propertiesPanel.hide();
-      app.dom.propertiesAlternatePanel.show();
+      app.dom.propertiesPanel.toggleClass('invisible');
+      app.dom.propertiesAlternatePanel.toggleClass('invisible');
     } else {
-      app.dom.propertiesPanel.show();
-      app.dom.propertiesAlternatePanel.hide();
+      app.dom.propertiesPanel.toggleClass('invisible');
+      app.dom.propertiesAlternatePanel.toggleClass('invisible');
 
       $('#title', app.dom.propertiesPanel).val(block.title);
       $('#description', app.dom.propertiesPanel).val(block.description);
@@ -226,7 +227,9 @@ this.app.helpers = this.app.helpers || {};
     valuePlaceholder=valuePlaceholder||'Value';
 
     // escape HTML quotes:
-    value = value.replace(/&/g, "&amp;").replace(/\"/g,'&quot;').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+//     if(value != null && value != -1) {  // TODO: check if not a number
+      value = String(value).replace(/&/g, "&amp;").replace(/\"/g,'&quot;').replace(/</g, "&lt;").replace(/>/g, "&gt;");
+//     }
     
     var row = $('<div class="editable-row"></div>');
     var colKey = $('<div class="editable-col key"><input type="text" placeholder="'+keyPlaceholder+'" value="'+key+'"></div>');
