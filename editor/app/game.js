@@ -11,6 +11,8 @@ this.b3editor = this.b3editor || {};
     this.canvas = app.dom.gameCanvas[0];
     this.stage = new createjs.Stage(this.canvas);
     this.display = new creatine.Display(this.canvas);
+    
+    console.log("Width: " + this.display.width);
 
     this.display.setUserSelect(false);
     this.display.setTouchAction(false);
