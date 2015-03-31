@@ -146,20 +146,28 @@ this.app.events = this.app.events || {};
     app.editor.center();
     return false;
   };
+  
+  app.events.onImportTreeModal = function(mode) {
+      $('#modalImportTree').find('.import-mode').val(mode);
+  };
+  
   app.events.onButtonImportTree = function(event) {
+    
     var json = app.dom.importEntry.val();
-
+    var mode = app.dom.importMode.val();
+    
     try {
-      app.editor.importFromJSON(json);
+      app.editor.importFromJSON(json, mode);
       app.helpers.updateNodes();
     } catch (e) {
       app.helpers.alert('error', 'Bad input format, check the console to '+
-                                 'know more about this error.');
+      'know more about this error.');
       console.error(e);
       app.editor.center();
     }
     return false;
   };
+  
   app.events.onButtonExportTree = function(event) {
     app.helpers.updateBlock();
     

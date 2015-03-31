@@ -1758,20 +1758,28 @@ this.app.events = this.app.events || {};
     app.editor.center();
     return false;
   };
+  
+  app.events.onImportTreeModal = function(mode) {
+      $('#modalImportTree').find('.import-mode').val(mode);
+  };
+  
   app.events.onButtonImportTree = function(event) {
+    
     var json = app.dom.importEntry.val();
-
+    var mode = app.dom.importMode.val();
+    
     try {
-      app.editor.importFromJSON(json);
+      app.editor.importFromJSON(json, mode);
       app.helpers.updateNodes();
     } catch (e) {
       app.helpers.alert('error', 'Bad input format, check the console to '+
-                                 'know more about this error.');
+      'know more about this error.');
       console.error(e);
       app.editor.center();
     }
     return false;
   };
+  
   app.events.onButtonExportTree = function(event) {
     app.helpers.updateBlock();
     
@@ -2140,9 +2148,17 @@ this.b3editor = this.b3editor || {};
       this.connections[i].applySettings(settings);
     }
   }
-  p.importFromJSON = function(json) {
-    this.reset();
-
+  p.importFromJSON = function(json, mode) {
+    
+    // Reset editor by default, removing all blocks
+    // (not when argument is false, e.g. for loading subtrees)
+    var mod = mode || 'replace';
+    if(mod === 'replace') {
+      
+      console.log("Resetting in mode " + mod);
+      this.reset();
+    }
+    
     var data = JSON.parse(json);
     var dataRoot = null;
     var hasDisplay = (data.display)?true:false;
@@ -2186,7 +2202,8 @@ this.b3editor = this.b3editor || {};
       block.mappings = spec.mappings || {};
       block.redraw();
 
-      if (block.id === data.root) {
+      // ignore root if in mode 'append'
+      if (block.id === data.root && mod === 'replace') {
         dataRoot = block;
       }
     }
@@ -2712,6 +2729,7 @@ this.app.dom = this.app.dom || {};
     // static components
     app.dom.exportEntry              = $('#export-entry'); // assigned on the updateNodes
     app.dom.importEntry              = $('#import-entry'); // assigned on the updateNodes
+    app.dom.importMode               = $('.import-mode'); // assigned on the updateNodes
     app.dom.addNodeTable             = $('#addnode-table'); // assigned on the updateNodes
     app.dom.editNodeTable            = $('#editnode-table'); // assigned on the updateNodes
   }

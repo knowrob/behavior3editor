@@ -133,9 +133,17 @@ this.b3editor = this.b3editor || {};
       this.connections[i].applySettings(settings);
     }
   }
-  p.importFromJSON = function(json) {
-    this.reset();
-
+  p.importFromJSON = function(json, mode) {
+    
+    // Reset editor by default, removing all blocks
+    // (not when argument is false, e.g. for loading subtrees)
+    var mod = mode || 'replace';
+    if(mod === 'replace') {
+      
+      console.log("Resetting in mode " + mod);
+      this.reset();
+    }
+    
     var data = JSON.parse(json);
     var dataRoot = null;
     var hasDisplay = (data.display)?true:false;
@@ -179,7 +187,8 @@ this.b3editor = this.b3editor || {};
       block.mappings = spec.mappings || {};
       block.redraw();
 
-      if (block.id === data.root) {
+      // ignore root if in mode 'append'
+      if (block.id === data.root && mod === 'replace') {
         dataRoot = block;
       }
     }
