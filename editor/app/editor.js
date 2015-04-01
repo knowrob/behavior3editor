@@ -135,12 +135,13 @@ this.b3editor = this.b3editor || {};
   }
   p.importFromJSON = function(json, mode) {
     
+    console.log(json);
+    console.log(mode);
+    
     // Reset editor by default, removing all blocks
     // (not when argument is false, e.g. for loading subtrees)
     var mod = mode || 'replace';
     if(mod === 'replace') {
-      
-      console.log("Resetting in mode " + mod);
       this.reset();
     }
     

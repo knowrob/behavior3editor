@@ -167,6 +167,40 @@ this.app.events = this.app.events || {};
     }
     return false;
   };
+  app.events.onButtonImportTreeFromFile = function(mode) {
+    
+    var file = "";
+    if(mode === 'replace') {
+      var file = $('#importTreeFromFile').get(0).files[0];    
+    } else if(mode === 'append') {
+      var file = $('#importSubTreeFromFile').get(0).files[0];    
+    }
+    
+    var reader = new FileReader();
+    var mode = mode;
+    
+    reader.onload = (function(theFile) {
+      return function(e) {        
+        var json = e.target.result;
+
+        try {
+          
+          console.log("mode: " + mode);
+          
+          app.editor.importFromJSON(json, mode);
+          app.helpers.updateNodes();
+        } catch (exc) {
+          app.helpers.alert('error', 'Bad input format, check the console to '+
+          'know more about this error.');
+          console.error(exc);
+          app.editor.center();
+        }
+      };
+    })(file);
+    
+    reader.readAsText(file);
+    return false;
+  };
   
   app.events.onButtonExportTree = function(event) {
     app.helpers.updateBlock();

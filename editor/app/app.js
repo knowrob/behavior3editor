@@ -98,6 +98,7 @@ this.app.dom = this.app.dom || {};
 //       app.storage.set('firsttime', false);
 //       $('#modalFirstTime').foundation('reveal', 'open');
 //     }
+    
   }
 
   app.initializePlugins = function() {

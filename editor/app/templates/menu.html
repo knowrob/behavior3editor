@@ -19,6 +19,7 @@
               </div>
             </a>
           </li>
+          <li class="divider"></li>
           <li>
             <a href="#" onclick="app.events.onImportTreeModal('replace');" data-toggle="modal" data-target="#modalImportTree">
               <div class="clearfix">
@@ -27,6 +28,7 @@
               </div>
             </a>
           </li>
+          <li class="divider"></li>
           <li>
             <a href="#" onclick="app.events.onImportTreeModal('append');" data-toggle="modal" data-target="#modalImportTree">
               <div class="clearfix">
@@ -35,6 +37,27 @@
               </div>
             </a>
           </li>
+          <li class="divider"></li>
+          <li>
+            <input type="file" id="importTreeFromFile" class="hidden" onchange="app.events.onButtonImportTreeFromFile('replace')" />
+            <a href="#" onClick="$('#importTreeFromFile').click();">
+              <div class="clearfix">
+                <span class="name">Import Tree from File</span>
+                <span id="key_import_tree" class="key"></span>
+              </div>
+            </a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <input type="file" id="importSubTreeFromFile" class="hidden" onchange="app.events.onButtonImportTreeFromFile('append')"/>
+            <a href="#" onclick="$('#importSubTreeFromFile').click();">
+              <div class="clearfix">
+                <span class="name">Import Subtree from File</span>
+                <span id="key_import_tree" class="key"></span>
+              </div>
+            </a>
+          </li>
+          <li class="divider"></li>
           <li>
             <a onclick="app.events.onButtonExportTree();" data-toggle="modal" data-target="#modalExportTree" href="#">
               <div class="clearfix">
